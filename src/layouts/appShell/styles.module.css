@@ -1,0 +1,18 @@
+.link_root { display: block; }
+
+.link {
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.link_root:hover .link {
+    transition: 200ms;
+    background-color: #177AE3;
+    color: #FFF;
+}
+
+.active {
+    transition: 200ms;
+    color: #FFF;
+    background-color: #177AE3;
+}

@@ -1,0 +1,27 @@
+body {
+    font-family: "Quicksand", sans-serif !important;
+    line-height: 1.5;
+    font-weight: 500;
+
+    color-scheme: light dark !important;
+    color: #000 !important;
+    background-color: #FFF !important;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(97, 96, 96);
+    border-radius: 10px;
+}

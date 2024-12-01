@@ -1,0 +1,27 @@
+.info {
+    border-radius: 16px;
+    padding: 16px 32px 32px 32px;
+    background-color: #177BE5;
+    color: #FFF;
+}
+
+.detail {
+    border-radius: 16px;
+    padding: 16px 32px 32px 32px;
+    background-color: #FFF;
+    color: #000;
+}
+
+.medical_file {
+    border-radius: 16px;
+    padding: 16px 32px 32px 32px;
+    background-color: #FFF;
+    color: #000;
+}
+
+.option {
+    border-radius: 16px;
+    padding: 16px;
+    background-color: #FFF;
+    color: #000;
+}
