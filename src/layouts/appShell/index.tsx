@@ -14,7 +14,7 @@ import classes from "./styles.module.css";
 
 
 const AppshellLayout: React.FC = () => {
-    const { 
+    const {
         profile,
         role,
     } = useAppSelector(state => {
@@ -26,29 +26,6 @@ const AppshellLayout: React.FC = () => {
 
     const links: ObjectRouter[] = useMemo(() => {
         let list: ObjectRouter[] = [ROUTER.HOME];
-
-        if (role === "admin") {
-            list.push(
-                ROUTER.DEPARTMENT,
-                ROUTER.ROOM_CLIN,
-                ROUTER.ROOM_SPEC,
-                ROUTER.ACCOUNT_DOCTOR,
-                ROUTER.SCHEDULE,
-                ROUTER.FIELD,
-                ROUTER.LOG_CHECK,
-            )
-        }
-
-        if (role === "room-clin") {
-            list.push(...[
-                ROUTER.CLINICAL,
-                ROUTER.RESULT,
-            ])
-        }
-
-        if (role === "room-spec") {
-            list.push(ROUTER.SPEC,)
-        }
 
         return list;
     }, [role]);

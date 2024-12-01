@@ -7,9 +7,11 @@ import { MantineProvider } from '@mantine/core'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ModalsProvider } from "@mantine/modals";
+import { Notifications } from '@mantine/notifications';
 
 import './index.css'
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 
 
 
@@ -19,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
             <Provider store={store}>
                 <BrowserRouter>
                     <App />
+                    <Notifications/>
                 </BrowserRouter>
             </Provider>
         </ModalsProvider>

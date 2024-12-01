@@ -16,13 +16,13 @@ const ProtectedLayout: React.FC = () => {
 
     useEffect(() => {
         if(!accessToken) {
-            navigation(ROUTER.LOGIN.href);
+            // navigation(ROUTER.LOGIN.href);
         }
     }, [accessToken]);
 
-    if(!accessToken) {
-        return <></>
-    }
+    // if(!accessToken) {
+    //     return <></>
+    // }
 
     return (
         <Suspense fallback={<LoadingOverlay visible overlayProps={{ radius: "sm", blur: 2 }} />}>

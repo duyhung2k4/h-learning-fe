@@ -4,19 +4,13 @@ export type LoginRequest = {
 }
 
 export type RegisterRequest = {
-    profileId: number
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    password: string
 }
 
-export type SendFileAuthRequest = {
-    data: string
-    profileId: number
-    uuid: string
-}
-
-export type FaceLoginRequest = {
-    data: string
-}
-
-export type SaveProcessRequest = {
-    profileId: number
+export type AcceptCodeRequest = {
+    code: string
 }
