@@ -50,7 +50,7 @@ const AppshellLayout: React.FC = () => {
                 pr={16}
             >
                 <Group>
-                    <Text><span>H</span>Learning</Text>
+                    <Text><span className={classes.title_app}>H</span>Learning</Text>
                 </Group>
 
                 <Group gap={24}>

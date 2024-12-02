@@ -46,3 +46,8 @@
 .header {
     background-color: #0C0C0C;
 }
+
+.title_app {
+    text-transform: lowercase;
+    color: #6E54B5 !important;
+}
