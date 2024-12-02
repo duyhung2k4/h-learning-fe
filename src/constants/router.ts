@@ -1,5 +1,8 @@
 import { 
     Icon,
+    IconBrandDatabricks,
+    IconCertificate,
+    IconHome,
     IconProps,
 } from "@tabler/icons-react"
 
@@ -15,6 +18,8 @@ export type FieldRouter =
     | "REGISTER"
     | "ACCEPT_CODE"
     | "HOME"
+    | "FIND_COURSE"
+    | "MY_COURSE"
 export const ROUTER: Record<FieldRouter, ObjectRouter> = {
     LOGIN: {
         href: "/login",
@@ -32,8 +37,21 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
         name: "Xác nhận otp",
     },
     HOME: {
-        href: "/home",
+        href: "/",
         type: "public",
         name: "Trang chủ",
+        icon: IconHome
+    },
+    FIND_COURSE: {
+        href: "/find-course",
+        type: "public",
+        name: "Khóa học",
+        icon: IconBrandDatabricks,
+    },
+    MY_COURSE: {
+        href: "/my-course",
+        type: "protected",
+        name: "Khóa học của tôi",
+        icon: IconCertificate,
     }
 }
