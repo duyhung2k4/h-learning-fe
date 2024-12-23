@@ -8,7 +8,6 @@ export type AuthResponse = {
 
 export type RegisterResponse = {
     token: string
-    exp: Date
 }
 
 export type SendFileAuthResponse = {

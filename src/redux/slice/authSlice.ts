@@ -19,7 +19,7 @@ const authSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, { payload }) => {
+        builder.addMatcher(authApi.endpoints.login.matchFulfilled, (_, { payload }) => {
             //   state.profile = payload.data?.profile;
             //   if(payload.data?.profile.role === "admin") {
             //     state.role = "admin"
@@ -39,7 +39,7 @@ const authSlice = createSlice({
                 Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
             }),
 
-            builder.addMatcher(authApi.endpoints.refreshToken.matchFulfilled, (state, { payload }) => {
+            builder.addMatcher(authApi.endpoints.refreshToken.matchFulfilled, (_, { payload }) => {
                 //   state.profile = payload.data?.profile;
                 //   if(payload.data?.profile.role === "admin") {
                 //     state.role = "admin"
@@ -60,8 +60,9 @@ const authSlice = createSlice({
 
             builder.addMatcher(authApi.endpoints.register.matchFulfilled, (_, { payload }) => {
                 const data = payload.data;
+                console.log(data);
                 if (!data) return;
-                Cookies.set(TOKEN_TYPE.CODE_TOKEN, data.token, { expires: dayjs(data.exp).toDate() })
+                Cookies.set(TOKEN_TYPE.CODE_TOKEN, data.token, { expires: dayjs().add(5, 'minute').toDate() });
             })
     }
 })
