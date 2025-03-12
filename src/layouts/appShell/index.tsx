@@ -1,10 +1,10 @@
 import React, { Suspense, useMemo } from "react";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 import { useNavigate, useOutlet } from "react-router";
 import { Box, Button, Group, LoadingOverlay, Text } from '@mantine/core';
 import { ObjectRouter, ROUTER } from "@/constants/router";
-import { TOKEN_TYPE } from "@/model/variable";
+// import { TOKEN_TYPE } from "@/model/variable";
 
 import classes from "./styles.module.css";
 
@@ -30,12 +30,12 @@ const AppshellLayout: React.FC = () => {
         navigation(href);
     }
 
-    const handleLogout = () => {
-        Cookies.remove(TOKEN_TYPE.ACCESS_TOKEN);
-        Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
+    // const handleLogout = () => {
+    //     Cookies.remove(TOKEN_TYPE.ACCESS_TOKEN);
+    //     Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
 
-        navigation(ROUTER.HOME.href);
-    }
+    //     navigation(ROUTER.HOME.href);
+    // }
 
 
 

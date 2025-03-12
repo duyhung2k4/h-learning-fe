@@ -1,16 +1,16 @@
 import Cookies from "js-cookie";
 import React, { Suspense, useEffect } from "react";
 
-import { ROUTER } from "@/constants/router";
+// import { ROUTER } from "@/constants/router";
 import { TOKEN_TYPE } from "@/model/variable";
-import { useNavigate, useOutlet } from "react-router";
+import { useOutlet } from "react-router";
 import { LoadingOverlay } from "@mantine/core";
 
 
 
 const ProtectedLayout: React.FC = () => {
     const outlet = useOutlet();
-    const navigation = useNavigate();
+    // const navigation = useNavigate();
 
     const accessToken = Cookies.get(TOKEN_TYPE.ACCESS_TOKEN);
 
