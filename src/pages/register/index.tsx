@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Checkbox, Grid, Stack, Text, TextInput } from "@mantine/core";
+import { Button, Checkbox, Grid, PasswordInput, Stack, Text, TextInput } from "@mantine/core";
 import { useRegisterMutation } from "@/redux/api/auth";
 import { useForm } from "@mantine/form";
 import { RegisterRequest } from "@/dto/request/auth";
@@ -10,7 +10,6 @@ import { ROUTER } from "@/constants/router";
 import { useMediaQuery } from "@mantine/hooks";
 
 import textClasses from "@/styles/text.module.css";
-import PasswordInputCustom from "@/components/passwordInput";
 import themeOverride from "@/themes/overrideTheme";
 
 
@@ -93,11 +92,11 @@ const Register: React.FC = () => {
             placeholder="Email"
             {...formRegister.getInputProps("email")}
           />
-          <PasswordInputCustom
+          <PasswordInput
             placeholder="Mật khẩu"
             {...formRegister.getInputProps("password")}
           />
-          <PasswordInputCustom
+          <PasswordInput
             placeholder="Xác nhận mật khẩu"
             {...formRegister.getInputProps("repeatPassword")}
           />

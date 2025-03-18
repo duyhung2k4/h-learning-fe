@@ -7,5 +7,7 @@ export const PageAcceptCode = lazy(() => import("@/pages/accept_code"));
 
 // student-pages
 export const PageHome = lazy(() => import("@/pages/home"));
-export const PageFindCourse = lazy(() => import("@/pages/find_course"));
 export const PageMyCourse = lazy(() => import("@/pages/my_course"));
+export const PageFilterCourse = lazy(() => import("@/pages/filter_course"));
+export const PageAccount = lazy(() => import("@/pages/account"));
+export const PageDetailCourse = lazy(() => import("@/pages/detail_course"))

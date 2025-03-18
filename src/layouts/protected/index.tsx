@@ -3,32 +3,46 @@ import React, { Suspense, useEffect } from "react";
 
 // import { ROUTER } from "@/constants/router";
 import { TOKEN_TYPE } from "@/model/variable";
-import { useOutlet } from "react-router";
+import { useNavigate, useOutlet } from "react-router";
 import { LoadingOverlay } from "@mantine/core";
+import { ROUTER } from "@/constants/router";
+import { useRefreshTokenMutation } from "@/redux/api/auth";
 
 
 
 const ProtectedLayout: React.FC = () => {
-    const outlet = useOutlet();
-    // const navigation = useNavigate();
+  const outlet = useOutlet();
+  const navigation = useNavigate();
 
-    const accessToken = Cookies.get(TOKEN_TYPE.ACCESS_TOKEN);
+  const accessToken = Cookies.get(TOKEN_TYPE.ACCESS_TOKEN);
 
-    useEffect(() => {
-        if(!accessToken) {
-            // navigation(ROUTER.LOGIN.href);
-        }
-    }, [accessToken]);
+  const [refresh, { isLoading: loadingRefreshToken }] = useRefreshTokenMutation();
 
-    // if(!accessToken) {
-    //     return <></>
-    // }
+  useEffect(() => {
+    if (accessToken) return;
+    const path = window.location.pathname;
+    if (path === ROUTER.LOGIN.href || path === ROUTER.REGISTER.href) return;
 
+    navigation(ROUTER.LOGIN.href);
+  }, [accessToken, window.location.pathname]);
+
+  useEffect(() => {
+    refresh(null);
+  }, []);
+
+
+
+  if (loadingRefreshToken) {
     return (
-        <Suspense fallback={<LoadingOverlay visible overlayProps={{ radius: "sm", blur: 2 }} />}>
-            {outlet}
-        </Suspense>
+      <LoadingOverlay />
     )
+  }
+
+  return (
+    <Suspense fallback={<LoadingOverlay visible overlayProps={{ radius: "sm", blur: 2 }} />}>
+      {outlet}
+    </Suspense>
+  )
 }
 
 export default ProtectedLayout;
