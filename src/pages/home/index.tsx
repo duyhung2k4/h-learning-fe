@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   Container,
@@ -10,12 +10,34 @@ import {
   Grid,
   Image,
   Stack,
+  Skeleton,
 } from "@mantine/core";
 import { IconBook, IconClock, IconCertificate } from "@tabler/icons-react";
+import { useNavigate } from "react-router";
+import { ROUTER } from "@/constants/router";
+
+import bgHome from "@/assets/bg_home.png";
+import { useGetAllCourseQuery } from "@/redux/api/course";
 
 
 
 const Home: React.FC = () => {
+  const navigation = useNavigate();
+  const {
+    data: courses,
+    isLoading,
+    refetch,
+  } = useGetAllCourseQuery(null);
+
+  // Lấy 3 khóa học đầu tiên hoặc ít hơn nếu không đủ
+  const featuredCourses = courses?.data?.slice(0, 3) || [];
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
+
+
   return (
     <Stack>
       <Container size="lg" py={{ base: 40, md: 80 }}>
@@ -31,14 +53,19 @@ const Home: React.FC = () => {
             <Text size="lg" c="dimmed" mb="xl">
               Nền tảng học online với 5000+ khóa học chất lượng từ các chuyên gia hàng đầu
             </Text>
-            <Button size="xl" radius="md" color="violet">
+            <Button
+              size="xl"
+              radius="md"
+              color="violet"
+              onClick={() => navigation(ROUTER.FILTER_COURSE.href)}
+            >
               Bắt đầu học ngay
             </Button>
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Image
-              src="/images/hero-education.png"
+              src={bgHome}
               alt="Học online"
               radius="md"
               fit="contain"
@@ -49,6 +76,7 @@ const Home: React.FC = () => {
 
       {/* Features Section */}
       <Container size="lg" py={{ base: 40, md: 80 }}>
+        <Title order={2} ta="center" mb={50} c="white">Giới thiệu</Title>
         <SimpleGrid cols={{ base: 1, md: 3 }} spacing="xl">
           <Paper p="xl" shadow="sm" radius="md" bg="dark.8">
             <IconBook size={40} color="var(--mantine-color-violet-5)" />
@@ -72,31 +100,68 @@ const Home: React.FC = () => {
 
       {/* Popular Courses */}
       <Container size="lg" py={{ base: 40, md: 80 }}>
-        <Title order={2} ta="center" mb={50} c="white">Khóa học nổi bật</Title>
+        <Title order={2} ta="center" mb={50} c="white">
+          Khóa học nổi bật
+        </Title>
 
         <Grid gutter="xl">
-          {[1, 2, 3].map((item) => (
-            <Grid.Col span={{ base: 12, md: 4 }} key={item}>
-              <Paper shadow="sm" radius="md" withBorder bg="dark.8">
-                <Image
-                  src={`/images/course-${item}.jpg`}
-                  height={200}
-                  alt="Khóa học"
-                  fit="cover"
-                />
-                <div style={{ padding: 20 }}>
-                  <Title order={4} c="white">Tên khóa học {item}</Title>
-                  <Text c="dimmed" mt="sm" lineClamp={3}>
-                    Mô tả khóa học với những nội dung hấp dẫn và thú vị...
-                  </Text>
-                  <Button fullWidth mt="md" radius="md" color="violet">
-                    Đăng ký ngay
-                  </Button>
-                </div>
-              </Paper>
-            </Grid.Col>
-          ))}
+          {(isLoading ? Array(3).fill(null) : featuredCourses).map(
+            (course, index) => (
+              <Grid.Col span={{ base: 12, md: 4 }} key={index}>
+                <Paper shadow="sm" radius="md" withBorder bg="dark.8">
+                  {isLoading ? (
+                    <Skeleton height={200} radius="md" />
+                  ) : (
+                    <Image
+                      src={`${import.meta.env.VITE_API}/api/v1/file/thumbnail_course/${course?.thumnail}`}
+                      height={200}
+                      alt="Khóa học"
+                      fit="cover"
+                    />
+                  )}
+
+                  <div style={{ padding: 20 }}>
+                    {isLoading ? (
+                      <>
+                        <Skeleton height={28} mb="sm" />
+                        <Skeleton height={20} />
+                        <Skeleton height={36} mt="md" />
+                      </>
+                    ) : (
+                      <>
+                        <Title order={4} c="white">
+                          {course?.name || "Tên khóa học"}
+                        </Title>
+                        <Text c="dimmed" mt="sm" lineClamp={3}>
+                          {course?.introduce || "Mô tả khóa học..."}
+                        </Text>
+                        <Button
+                          fullWidth
+                          mt="md"
+                          radius="md"
+                          color="violet"
+                          onClick={() =>
+                            navigation(
+                              `${ROUTER.DETAIL_COURSE.href}/${course?.ID}`
+                            )
+                          }
+                        >
+                          Đăng ký ngay
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </Paper>
+              </Grid.Col>
+            )
+          )}
         </Grid>
+
+        {!isLoading && featuredCourses.length === 0 && (
+          <Text ta="center" c="dimmed">
+            Hiện chưa có khóa học nào
+          </Text>
+        )}
       </Container>
     </Stack>
   );
