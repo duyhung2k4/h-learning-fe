@@ -75,6 +75,10 @@ const DetailCourse: React.FC = () => {
     }
   }
 
+  const gotoCourse = async () => {
+    navigation(`${ROUTER.COURSE_LEARNING.href}/${courseId}`);
+  }
+
   useEffect(() => {
     refetchDetailCourse();
     refetchDetailCourseRegister();
@@ -136,7 +140,7 @@ const DetailCourse: React.FC = () => {
         <Button
           loading={loadingCreateCourse}
           w={"100%"}
-          onClick={!detailCourseRegister ? handleRegisterCourse : undefined}
+          onClick={!detailCourseRegister ? handleRegisterCourse : gotoCourse}
         >{detailCourseRegister ? "Đi tới bài học" : "Đăng kí"}</Button>
       </Flex>
     </Stack>

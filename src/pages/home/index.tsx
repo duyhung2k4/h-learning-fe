@@ -99,7 +99,7 @@ const Home: React.FC = () => {
       </Container>
 
       {/* Popular Courses */}
-      <Container size="lg" py={{ base: 40, md: 80 }}>
+      <Stack p={16}>
         <Title order={2} ta="center" mb={50} c="white">
           Khóa học nổi bật
         </Title>
@@ -162,7 +162,7 @@ const Home: React.FC = () => {
             Hiện chưa có khóa học nào
           </Text>
         )}
-      </Container>
+      </Stack>
     </Stack>
   );
 }

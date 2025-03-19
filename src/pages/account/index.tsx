@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import Cookies from 'js-cookie';
+
 import { useSelector } from 'react-redux';
 import { useForm } from '@mantine/form';
 import {
@@ -12,16 +14,23 @@ import {
   Group,
   Box,
   rem,
+  Divider,
 } from '@mantine/core';
 import { RootState } from '@/redux/store';
 import { useRefreshTokenMutation, useUpdateProfileMutation } from '@/redux/api/auth';
 import { useNotification } from '@/hook/notification.hook';
+import { TOKEN_TYPE } from '@/model/variable';
+import { ROUTER } from '@/constants/router';
+import { useNavigate } from 'react-router';
+
+
 
 const Account: React.FC = () => {
   const { profile } = useSelector((state: RootState) => state.authSlice);
   const [updateProfile, { isLoading: loadingUpdateProfile }] = useUpdateProfileMutation();
   const [refresh, { isLoading: loadingRefreshToken }] = useRefreshTokenMutation();
   const noti = useNotification();
+  const navigation = useNavigate();
 
   const form = useForm<FormUpdateProfile>({
     initialValues: {
@@ -57,6 +66,13 @@ const Account: React.FC = () => {
       });
     }
   }, [profile]);
+
+    const handleLogout = () => {
+      Cookies.remove(TOKEN_TYPE.ACCESS_TOKEN);
+      Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
+
+      navigation(ROUTER.LOGIN.href);
+  }
 
   const handleSubmit = async (values: Partial<FormUpdateProfile>) => {
     try {
@@ -149,6 +165,9 @@ const Account: React.FC = () => {
             >
               Lưu thay đổi
             </Button>
+            <Divider my="md" />
+
+            <Button variant="outline" onClick={handleLogout}>Đăng xuất</Button>
           </Stack>
         </form>
       </Box>
