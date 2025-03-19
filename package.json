@@ -34,6 +34,8 @@
     "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "embla-carousel-react": "^7.1.0",
+    "framer-motion": "^12.5.0",
+    "hls.js": "^1.5.20",
     "js-cookie": "^3.0.5",
     "mantine-react-table": "^2.0.0-beta.6",
     "react": "^18.3.1",

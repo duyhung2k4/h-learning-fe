@@ -33,3 +33,22 @@ body {
     outline: 2px solid #6E6191 !important;
   }
 }
+
+@media (orientation: portrait) and (max-width: 768px) {
+  :-webkit-full-screen {
+    transform: rotate(90deg);
+    width: 100vh !important;
+    height: 100vw !important;
+    transform-origin: left top;
+  }
+}
+
+/* Dành cho iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  :-webkit-full-screen {
+    transform: rotate(90deg);
+    width: 100vh !important;
+    height: 100vw !important;
+    transform-origin: left top;
+  }
+}

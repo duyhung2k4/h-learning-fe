@@ -36,7 +36,7 @@ const FilterCourse: React.FC = () => {
   }
 
   return (
-    <Stack p={16}>
+    <Stack p={8}>
       <Title order={1} mb="xl" c="white" fz={{ base: 28, md: 36 }}>
         Tìm kiếm khóa học
       </Title>

@@ -23,10 +23,16 @@ export const courseRegisterApi = createApi({
         }
       }),
     }),
+    allCourseRegister: builder.query<QueryReturnType<CourseRegisterModel[]>, null>({
+      query: () => ({
+        ...endPoint.courseRegister.all(),
+      }),
+    }),
   })
 });
 
 export const {
   useCreateCourseRegisterMutation,
   useDetailCourseRegisterQuery,
+  useAllCourseRegisterQuery,
 } = courseRegisterApi;

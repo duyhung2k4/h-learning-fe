@@ -8,12 +8,9 @@ import { ProfileModel } from "@/model/profile";
 
 interface AuthState {
   profile?: ProfileModel
-  role: "admin" | "room-clin" | "room-spec" | ""
 }
 
-const initialState: AuthState = {
-  role: ""
-}
+const initialState: AuthState = {}
 
 const authSlice = createSlice({
   name: "auth",
@@ -36,11 +33,6 @@ const authSlice = createSlice({
 
       builder.addMatcher(authApi.endpoints.refreshToken.matchFulfilled, (state, { payload }) => {
         state.profile = payload.data?.profile;
-        //   if(payload.data?.profile.role === "admin") {
-        //     state.role = "admin"
-        //   } else {
-        //     state.role = payload.data?.profile.room?.roomType || ""
-        //   }
 
         if (payload.data?.accessToken && payload.data?.refreshToken) {
           Cookies.set(TOKEN_TYPE.ACCESS_TOKEN, payload.data.accessToken, { expires: 1 });

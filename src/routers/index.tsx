@@ -13,6 +13,8 @@ import {
   PageFilterCourse,
   PageRegister,
   PageDetailCourse,
+  PageCourseLearning,
+  PageLessionLearning,
 } from "./lazy";
 import { ROUTER } from "@/constants/router";
 
@@ -33,7 +35,9 @@ const AppRouter: React.FC = () => {
           <Route path={ROUTER.FILTER_COURSE.href} element={<PageFilterCourse />} />
           <Route path={ROUTER.ACCOUNT.href} element={<PageAccount />} />
         </Route>
-        <Route path={`${ROUTER.DETAIL_COURSE.href}/:id`} element={<PageDetailCourse/>}/>
+        <Route path={`${ROUTER.DETAIL_COURSE.href}/:id`} element={<PageDetailCourse />} />
+        <Route path={`${ROUTER.COURSE_LEARNING.href}/:id`} element={<PageCourseLearning />} />
+        <Route path={`${ROUTER.LESSION_LEARNING.href}/:id`} element={<PageLessionLearning />} />
       </Route>
     </Routes>
   )

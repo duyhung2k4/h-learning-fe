@@ -21,7 +21,7 @@ const ProtectedLayout: React.FC = () => {
   useEffect(() => {
     if (accessToken) return;
     const path = window.location.pathname;
-    if (path === ROUTER.LOGIN.href || path === ROUTER.REGISTER.href) return;
+    if (path === ROUTER.LOGIN.href || path === ROUTER.REGISTER.href || path === ROUTER.ACCEPT_CODE.href) return;
 
     navigation(ROUTER.LOGIN.href);
   }, [accessToken, window.location.pathname]);

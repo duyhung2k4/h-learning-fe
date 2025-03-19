@@ -3,11 +3,11 @@ import { CourseModel } from "./course";
 import { LessionModel } from "./lession";
 
 export type ChapterModel = BaseModel & {
-    name: string
-    description: string
-    order: number
-    courseId: number
+  name: string
+  description: string
+  order: number
+  courseId: number
 
-    course?: CourseModel
-    lessions: LessionModel[]
+  course?: CourseModel
+  lessions: LessionModel[]
 }

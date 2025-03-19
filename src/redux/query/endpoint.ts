@@ -106,5 +106,17 @@ export const endPoint = {
       method: "GET",
       headers: HEADER.protectedHeader(),
     }),
+    all: () => ({
+      url: `api/v1/course-register/all`,
+      method: "GET",
+      headers: HEADER.protectedHeader(),
+    })
+  },
+  lession: {
+    detail: () => ({
+      url: `api/v1/lession/detail-public`,
+      method: "GET",
+      headers: HEADER.protectedHeader(),
+    }),
   }
 }

@@ -21,6 +21,8 @@ export type FieldRouter =
   | "HOME"
   | "MY_COURSE"
   | "DETAIL_COURSE"
+  | "COURSE_LEARNING"
+  | "LESSION_LEARNING"
   | "FILTER_COURSE"
   | "ACCOUNT"
 export const ROUTER: Record<FieldRouter, ObjectRouter> = {
@@ -55,6 +57,16 @@ export const ROUTER: Record<FieldRouter, ObjectRouter> = {
     href: "/detail-course",
     type: "public",
     name: "Chi tiết khóa học",
+  },
+  COURSE_LEARNING: {
+    href: "/course-learning",
+    type: "public",
+    name: "Chi tiết khóa học",
+  },
+  LESSION_LEARNING: {
+    href: "/lession-learning",
+    type: "public",
+    name: "Chi tiết bài học",
   },
   FILTER_COURSE: {
     href: "/filter-course",
