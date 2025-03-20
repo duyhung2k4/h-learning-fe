@@ -67,11 +67,11 @@ const Account: React.FC = () => {
     }
   }, [profile]);
 
-    const handleLogout = () => {
-      Cookies.remove(TOKEN_TYPE.ACCESS_TOKEN);
-      Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
+  const handleLogout = () => {
+    Cookies.remove(TOKEN_TYPE.ACCESS_TOKEN);
+    Cookies.remove(TOKEN_TYPE.REFRESH_TOKEN);
 
-      navigation(ROUTER.LOGIN.href);
+    navigation(ROUTER.LOGIN.href);
   }
 
   const handleSubmit = async (values: Partial<FormUpdateProfile>) => {
