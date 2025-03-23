@@ -27,7 +27,7 @@ export const ConvertHTML: React.FC<ConvertHTMLProps> = (props) => {
         ],
         content: props.defaultContent,
         editable: false,
-    });
+    }, [props.defaultContent]);
 
 
 
